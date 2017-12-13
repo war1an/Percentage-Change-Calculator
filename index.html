@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tesing online</title>
+</head>
+<body>
+
+	<form method="post" id="mainForm">
+		<input type="text" name="username">
+		<input type="submit" value="Submit">
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		
+		$( document ).ready(function() {
+			$('#mainForm').on('submit', function(e) {
+
+				e.preventDefault();
+				var data = $(this).serializeArray();
+
+				var values = {};
+				$.each($(this).serializeArray(), function(i, field) {
+				    values[field.name] = field.value;
+				});
+
+				var mainUrl = 'https://www.reddit.com/user/'+values.username+'/saved/';
+
+				var posts = $('div.linklisting a.title');
+				var links = [];
+				$.each(posts, function(i, post) {
+					console.log(post.href);
+					links.push(post.href);
+				});
+
+				console.log(posts[1]);
+
+			});
+
+		});
+
+	</script>
+
+</body>
+</html>
